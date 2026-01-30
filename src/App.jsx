@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { 
   Star, Heart, Gift, ShoppingCart, ChevronLeft, ChevronRight, 
   Mail, Phone, MapPin, Check, Globe, Menu, X, Video, Camera,
-  Send, CheckCircle, Package, Award, Calendar
+  Send, CheckCircle, Award, Calendar, Truck
 } from 'lucide-react'
 
 // Translation data
@@ -206,11 +206,11 @@ function App() {
   const { isSubmitting, isSuccess, isError, errorMessage, handleSubmit, resetForm } = useFormHandler()
   const ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY' // Replace with your Web3Forms Access Key
 
-  // Product data
+  // Product data - only dress images, no people
   const products = [
     {
       id: 1,
-      image: 'https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_1383364807/user-photo-1.jpg?',
+      image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80',
       nameEn: 'Princess Rose',
       nameUk: 'Принцеса Роза',
       price: 1200,
@@ -232,7 +232,7 @@ function App() {
     },
     {
       id: 4,
-      image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1612423284934-2850a4ea6b0f?w=800&q=80',
       nameEn: 'Pearl Princess',
       nameUk: 'Перлинна Принцеса',
       price: 1400,
@@ -240,11 +240,12 @@ function App() {
     }
   ]
 
+  // Slider with dress images only
   const slides = [
-    'https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_1383364807/user-photo-1.jpg?',
+    'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=1200&q=80',
     'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=1200&q=80',
     'https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?w=1200&q=80',
-    'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=1200&q=80'
+    'https://images.unsplash.com/photo-1612423284934-2850a4ea6b0f?w=1200&q=80'
   ]
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length)
@@ -262,31 +263,31 @@ function App() {
   const deliveryInView = useInView(deliveryRef, { once: true })
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-milky via-cream to-powder/20">
+    <div className="min-h-screen bg-gradient-to-b from-milky via-cream to-lavender/30">
       {/* HEADER */}
-      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-lg z-50 border-b border-powder/30 shadow-sm">
+      <header className="fixed top-0 w-full bg-white/80 backdrop-blur-xl z-50 border-b border-powder/20 shadow-sm">
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="bg-gradient-to-br from-powder to-skyblue p-2 rounded-full">
-                <Star className="w-6 h-6 text-white" />
+              <div className="bg-gradient-to-br from-powder/40 to-lavender/40 p-2.5 rounded-full">
+                <Star className="w-6 h-6 text-pink-300" />
               </div>
-              <span className="text-2xl font-display font-bold bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+              <span className="text-2xl font-display font-bold bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
                 Fairytale Dresses
               </span>
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#collection" className="text-gray-700 hover:text-pink-400 transition-colors font-medium">
+              <a href="#collection" className="text-gray-500 hover:text-pink-300 transition-colors font-medium">
                 {t.nav.collection}
               </a>
-              <a href="#about" className="text-gray-700 hover:text-pink-400 transition-colors font-medium">
+              <a href="#about" className="text-gray-500 hover:text-pink-300 transition-colors font-medium">
                 {t.nav.about}
               </a>
-              <a href="#delivery" className="text-gray-700 hover:text-pink-400 transition-colors font-medium">
+              <a href="#delivery" className="text-gray-500 hover:text-pink-300 transition-colors font-medium">
                 {t.nav.delivery}
               </a>
-              <a href="#contact" className="text-gray-700 hover:text-pink-400 transition-colors font-medium">
+              <a href="#contact" className="text-gray-500 hover:text-pink-300 transition-colors font-medium">
                 {t.nav.contact}
               </a>
             </div>
@@ -294,19 +295,19 @@ function App() {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setLang(lang === 'en' ? 'uk' : 'en')}
-                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-powder/30 to-skyblue/30 rounded-full hover:from-powder/50 hover:to-skyblue/50 transition-all"
+                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-powder/20 to-lavender/20 rounded-full hover:from-powder/30 hover:to-lavender/30 transition-all"
               >
-                <Globe className="w-4 h-4" />
-                <span className="font-semibold">{lang === 'en' ? 'EN' : 'УК'}</span>
+                <Globe className="w-4 h-4 text-pink-300" />
+                <span className="font-semibold text-gray-600">{lang === 'en' ? 'EN' : 'УК'}</span>
               </button>
               
-              <button className="hidden md:flex items-center gap-2 bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-pink-200">
+              <button className="hidden md:flex items-center gap-2 bg-gradient-to-r from-pink-200 to-purple-200 hover:from-pink-300 hover:to-purple-300 text-white px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-pink-100">
                 <ShoppingCart className="w-4 h-4" />
                 {t.nav.orderNow}
               </button>
 
               <button 
-                className="md:hidden"
+                className="md:hidden text-gray-600"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -323,16 +324,16 @@ function App() {
                 exit={{ opacity: 0, height: 0 }}
                 className="md:hidden pt-4 pb-2 space-y-3"
               >
-                <a href="#collection" className="block text-gray-700 hover:text-pink-400 transition-colors font-medium">
+                <a href="#collection" className="block text-gray-500 hover:text-pink-300 transition-colors font-medium">
                   {t.nav.collection}
                 </a>
-                <a href="#about" className="block text-gray-700 hover:text-pink-400 transition-colors font-medium">
+                <a href="#about" className="block text-gray-500 hover:text-pink-300 transition-colors font-medium">
                   {t.nav.about}
                 </a>
-                <a href="#delivery" className="block text-gray-700 hover:text-pink-400 transition-colors font-medium">
+                <a href="#delivery" className="block text-gray-500 hover:text-pink-300 transition-colors font-medium">
                   {t.nav.delivery}
                 </a>
-                <a href="#contact" className="block text-gray-700 hover:text-pink-400 transition-colors font-medium">
+                <a href="#contact" className="block text-gray-500 hover:text-pink-300 transition-colors font-medium">
                   {t.nav.contact}
                 </a>
               </motion.div>
@@ -343,7 +344,7 @@ function App() {
 
       {/* HERO WITH SLIDER */}
       <section className="relative pt-28 pb-16 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-skyblue/20 via-powder/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-lavender/10 via-powder/10 to-transparent" />
         
         <div className="container mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -352,21 +353,21 @@ function App() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-7xl font-display font-black mb-6 bg-gradient-to-r from-pink-400 via-pink-500 to-blue-400 bg-clip-text text-transparent leading-tight">
+              <h1 className="text-5xl md:text-7xl font-display font-black mb-6 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent leading-tight">
                 {t.hero.title}
               </h1>
-              <p className="text-2xl md:text-3xl text-pink-400 mb-6 font-display font-semibold">
+              <p className="text-2xl md:text-3xl text-pink-300 mb-6 font-display font-semibold">
                 {t.hero.subtitle}
               </p>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-xl">
+              <p className="text-lg text-gray-500 mb-8 leading-relaxed max-w-xl">
                 {t.hero.description}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white px-8 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-xl shadow-pink-200 flex items-center justify-center gap-2">
+                <button className="bg-gradient-to-r from-pink-200 to-purple-200 hover:from-pink-300 hover:to-purple-300 text-white px-8 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-xl shadow-pink-100 flex items-center justify-center gap-2">
                   {t.hero.cta}
                   <Star className="w-5 h-5" />
                 </button>
-                <button className="bg-white/80 hover:bg-white text-pink-500 px-8 py-4 rounded-full text-lg font-bold transition-all border-2 border-pink-200 flex items-center justify-center gap-2">
+                <button className="bg-white/60 hover:bg-white/80 text-pink-300 px-8 py-4 rounded-full text-lg font-bold transition-all border-2 border-pink-100 flex items-center justify-center gap-2">
                   <Video className="w-5 h-5" />
                   {t.hero.videoCta}
                 </button>
@@ -380,7 +381,7 @@ function App() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl shadow-pink-100/50">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentSlide}
@@ -396,15 +397,15 @@ function App() {
                 
                 <button
                   onClick={prevSlide}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all transform hover:scale-110"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all transform hover:scale-110"
                 >
-                  <ChevronLeft className="w-6 h-6 text-pink-500" />
+                  <ChevronLeft className="w-6 h-6 text-pink-300" />
                 </button>
                 <button
                   onClick={nextSlide}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all transform hover:scale-110"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all transform hover:scale-110"
                 >
-                  <ChevronRight className="w-6 h-6 text-pink-500" />
+                  <ChevronRight className="w-6 h-6 text-pink-300" />
                 </button>
 
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
@@ -425,7 +426,7 @@ function App() {
       </section>
 
       {/* FEATURES */}
-      <section id="about" ref={featuresRef} className="py-20 px-6 bg-white">
+      <section id="about" ref={featuresRef} className="py-20 px-6 bg-white/40 backdrop-blur-sm">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -433,29 +434,29 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
               {t.features.title}
             </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: Award, title: t.features.quality, desc: t.features.qualityDesc, color: 'from-pink-400 to-pink-500' },
-              { icon: Heart, title: t.features.handmade, desc: t.features.handmadeDesc, color: 'from-purple-400 to-pink-400' },
-              { icon: Star, title: t.features.unique, desc: t.features.uniqueDesc, color: 'from-blue-400 to-purple-400' }
+              { icon: Award, title: t.features.quality, desc: t.features.qualityDesc, color: 'from-pink-200/30 to-pink-300/30' },
+              { icon: Heart, title: t.features.handmade, desc: t.features.handmadeDesc, color: 'from-purple-200/30 to-pink-200/30' },
+              { icon: Star, title: t.features.unique, desc: t.features.uniqueDesc, color: 'from-blue-200/30 to-purple-200/30' }
             ].map((feature, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: featuresInView ? 1 : 0, y: featuresInView ? 0 : 30 }}
                 transition={{ duration: 0.6, delay: idx * 0.2 }}
-                className="bg-gradient-to-br from-milky to-white p-8 rounded-3xl border-2 border-powder/30 hover:border-pink-300 transition-all transform hover:scale-105 hover:shadow-2xl"
+                className="bg-white/60 backdrop-blur-sm p-8 rounded-3xl border-2 border-powder/20 hover:border-pink-200 transition-all transform hover:scale-105 hover:shadow-2xl hover:shadow-pink-100/30"
               >
                 <div className={`bg-gradient-to-br ${feature.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
-                  <feature.icon className="w-8 h-8 text-white" />
+                  <feature.icon className="w-8 h-8 text-pink-300" />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-gray-800 mb-4">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+                <h3 className="text-2xl font-display font-bold text-gray-700 mb-4">{feature.title}</h3>
+                <p className="text-gray-500 leading-relaxed">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -463,7 +464,7 @@ function App() {
       </section>
 
       {/* COLLECTION */}
-      <section id="collection" ref={collectionRef} className="py-20 px-6 bg-gradient-to-b from-powder/10 to-skyblue/10">
+      <section id="collection" ref={collectionRef} className="py-20 px-6 bg-gradient-to-b from-lavender/10 to-powder/10">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -471,10 +472,10 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
               {t.collection.title}
             </h2>
-            <p className="text-xl text-gray-600 font-display">{t.collection.subtitle}</p>
+            <p className="text-xl text-gray-500 font-display">{t.collection.subtitle}</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -484,7 +485,7 @@ function App() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: collectionInView ? 1 : 0, y: collectionInView ? 0 : 30 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all transform hover:scale-105 group"
+                className="bg-white/60 backdrop-blur-sm rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-pink-100/50 transition-all transform hover:scale-105 group"
               >
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <img
@@ -493,22 +494,22 @@ function App() {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   {product.special && (
-                    <div className="absolute top-4 right-4 bg-gradient-to-r from-pink-500 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                    <div className="absolute top-4 right-4 bg-gradient-to-r from-pink-200 to-purple-200 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                       {t.collection.special}
                     </div>
                   )}
-                  <button className="absolute top-4 left-4 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all transform hover:scale-110">
-                    <Heart className="w-5 h-5 text-pink-500" />
+                  <button className="absolute top-4 left-4 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all transform hover:scale-110">
+                    <Heart className="w-5 h-5 text-pink-300" />
                   </button>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-display font-bold text-gray-800 mb-2">
+                  <h3 className="text-2xl font-display font-bold text-gray-700 mb-2">
                     {lang === 'en' ? product.nameEn : product.nameUk}
                   </h3>
-                  <p className="text-pink-500 text-2xl font-bold mb-4">
+                  <p className="text-pink-300 text-2xl font-bold mb-4">
                     {t.collection.price} {product.price} ₴
                   </p>
-                  <button className="w-full bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white py-3 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
+                  <button className="w-full bg-gradient-to-r from-pink-200 to-purple-200 hover:from-pink-300 hover:to-purple-300 text-white py-3 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
                     <ShoppingCart className="w-5 h-5" />
                     {t.collection.addToCart}
                   </button>
@@ -520,7 +521,7 @@ function App() {
       </section>
 
       {/* GIFTS */}
-      <section ref={giftsRef} className="py-20 px-6 bg-white">
+      <section ref={giftsRef} className="py-20 px-6 bg-white/40 backdrop-blur-sm">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -528,10 +529,10 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
               {t.gifts.title}
             </h2>
-            <p className="text-xl text-gray-600 font-display">{t.gifts.subtitle}</p>
+            <p className="text-xl text-gray-500 font-display">{t.gifts.subtitle}</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -545,13 +546,13 @@ function App() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: giftsInView ? 1 : 0, y: giftsInView ? 0 : 30 }}
                 transition={{ duration: 0.6, delay: idx * 0.2 }}
-                className="text-center p-8 bg-gradient-to-br from-powder/20 to-skyblue/20 rounded-3xl border-2 border-pink-200 hover:border-pink-300 transition-all transform hover:scale-105"
+                className="text-center p-8 bg-white/60 backdrop-blur-sm rounded-3xl border-2 border-pink-100 hover:border-pink-200 transition-all transform hover:scale-105"
               >
-                <div className="bg-gradient-to-br from-pink-400 to-pink-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
-                  <gift.icon className="w-10 h-10 text-white" />
+                <div className="bg-gradient-to-br from-pink-200/30 to-purple-200/30 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
+                  <gift.icon className="w-10 h-10 text-pink-300" />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-gray-800 mb-3">{gift.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{gift.desc}</p>
+                <h3 className="text-2xl font-display font-bold text-gray-700 mb-3">{gift.title}</h3>
+                <p className="text-gray-500 leading-relaxed">{gift.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -559,7 +560,7 @@ function App() {
       </section>
 
       {/* DELIVERY */}
-      <section id="delivery" ref={deliveryRef} className="py-20 px-6 bg-gradient-to-b from-skyblue/10 to-powder/10">
+      <section id="delivery" ref={deliveryRef} className="py-20 px-6 bg-gradient-to-b from-powder/10 to-lavender/10">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -567,10 +568,10 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
               {t.delivery.title}
             </h2>
-            <p className="text-xl text-gray-600 font-display">{t.delivery.subtitle}</p>
+            <p className="text-xl text-gray-500 font-display">{t.delivery.subtitle}</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -578,14 +579,14 @@ function App() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: deliveryInView ? 1 : 0, x: deliveryInView ? 0 : -30 }}
               transition={{ duration: 0.6 }}
-              className="bg-white p-10 rounded-3xl shadow-xl border-2 border-powder/30 hover:border-pink-300 transition-all"
+              className="bg-white/60 backdrop-blur-sm p-10 rounded-3xl shadow-xl border-2 border-powder/20 hover:border-pink-200 transition-all"
             >
-              <div className="bg-gradient-to-br from-blue-400 to-blue-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                <Package className="w-10 h-10 text-white" />
+              <div className="bg-gradient-to-br from-blue-200/30 to-purple-200/30 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                <Truck className="w-10 h-10 text-blue-300" />
               </div>
-              <h3 className="text-3xl font-display font-bold text-gray-800 mb-4">{t.delivery.novaPoshta}</h3>
-              <p className="text-gray-600 text-lg leading-relaxed mb-4">{t.delivery.novaPoshtaDesc}</p>
-              <div className="flex items-center gap-3 text-pink-500 font-bold text-lg">
+              <h3 className="text-3xl font-display font-bold text-gray-700 mb-4">{t.delivery.novaPoshta}</h3>
+              <p className="text-gray-500 text-lg leading-relaxed mb-4">{t.delivery.novaPoshtaDesc}</p>
+              <div className="flex items-center gap-3 text-pink-300 font-bold text-lg">
                 <Calendar className="w-6 h-6" />
                 <span>1-3 {t.delivery.days}</span>
               </div>
@@ -595,14 +596,14 @@ function App() {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: deliveryInView ? 1 : 0, x: deliveryInView ? 0 : 30 }}
               transition={{ duration: 0.6 }}
-              className="bg-white p-10 rounded-3xl shadow-xl border-2 border-powder/30 hover:border-pink-300 transition-all"
+              className="bg-white/60 backdrop-blur-sm p-10 rounded-3xl shadow-xl border-2 border-powder/20 hover:border-pink-200 transition-all"
             >
-              <div className="bg-gradient-to-br from-pink-400 to-pink-500 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                <MapPin className="w-10 h-10 text-white" />
+              <div className="bg-gradient-to-br from-pink-200/30 to-purple-200/30 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                <MapPin className="w-10 h-10 text-pink-300" />
               </div>
-              <h3 className="text-3xl font-display font-bold text-gray-800 mb-4">{t.delivery.courier}</h3>
-              <p className="text-gray-600 text-lg leading-relaxed mb-4">{t.delivery.courierDesc}</p>
-              <div className="flex items-center gap-3 text-pink-500 font-bold text-lg">
+              <h3 className="text-3xl font-display font-bold text-gray-700 mb-4">{t.delivery.courier}</h3>
+              <p className="text-gray-500 text-lg leading-relaxed mb-4">{t.delivery.courierDesc}</p>
+              <div className="flex items-center gap-3 text-pink-300 font-bold text-lg">
                 <Calendar className="w-6 h-6" />
                 <span>1-2 {t.delivery.days}</span>
               </div>
@@ -612,22 +613,22 @@ function App() {
       </section>
 
       {/* VIDEO SECTION */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6 bg-white/40 backdrop-blur-sm">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
               {t.video.title}
             </h2>
-            <p className="text-xl text-gray-600 font-display">{t.video.subtitle}</p>
+            <p className="text-xl text-gray-500 font-display">{t.video.subtitle}</p>
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-powder/30">
+            <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-pink-100/50 border-4 border-powder/20">
               <video
                 src="https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_1383364807/user-video-3.MOV?"
                 controls
                 className="w-full h-full object-cover"
-                poster="https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_1383364807/user-photo-1.jpg?"
+                poster="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=1200&q=80"
               />
             </div>
           </div>
@@ -635,16 +636,16 @@ function App() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-20 px-6 bg-gradient-to-b from-powder/10 to-skyblue/10">
+      <section id="contact" className="py-20 px-6 bg-gradient-to-b from-lavender/10 to-powder/10">
         <div className="container mx-auto max-w-2xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
               {t.contact.title}
             </h2>
-            <p className="text-xl text-gray-600 font-display">{t.contact.subtitle}</p>
+            <p className="text-xl text-gray-500 font-display">{t.contact.subtitle}</p>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border-2 border-powder/30">
+          <div className="bg-white/60 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 border-2 border-powder/20">
             <AnimatePresence mode="wait">
               {!isSuccess ? (
                 <motion.form
@@ -662,7 +663,7 @@ function App() {
                       name="name"
                       placeholder={t.contact.name}
                       required
-                      className="w-full px-6 py-4 bg-gradient-to-r from-powder/10 to-skyblue/10 border-2 border-powder/30 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-pink-400 transition-colors text-lg"
+                      className="w-full px-6 py-4 bg-white/80 border-2 border-powder/30 rounded-2xl text-gray-700 placeholder-gray-400 focus:outline-none focus:border-pink-200 transition-colors text-lg"
                     />
                   </div>
                   
@@ -672,7 +673,7 @@ function App() {
                       name="email"
                       placeholder={t.contact.email}
                       required
-                      className="w-full px-6 py-4 bg-gradient-to-r from-powder/10 to-skyblue/10 border-2 border-powder/30 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-pink-400 transition-colors text-lg"
+                      className="w-full px-6 py-4 bg-white/80 border-2 border-powder/30 rounded-2xl text-gray-700 placeholder-gray-400 focus:outline-none focus:border-pink-200 transition-colors text-lg"
                     />
                   </div>
                   
@@ -682,12 +683,12 @@ function App() {
                       placeholder={t.contact.message}
                       rows="5"
                       required
-                      className="w-full px-6 py-4 bg-gradient-to-r from-powder/10 to-skyblue/10 border-2 border-powder/30 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-pink-400 transition-colors resize-none text-lg"
+                      className="w-full px-6 py-4 bg-white/80 border-2 border-powder/30 rounded-2xl text-gray-700 placeholder-gray-400 focus:outline-none focus:border-pink-200 transition-colors resize-none text-lg"
                     ></textarea>
                   </div>
                   
                   {isError && (
-                    <div className="text-red-500 text-sm bg-red-50 p-4 rounded-xl">
+                    <div className="text-red-400 text-sm bg-red-50 p-4 rounded-xl">
                       {errorMessage}
                     </div>
                   )}
@@ -695,7 +696,7 @@ function App() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed text-white px-8 py-5 rounded-2xl font-bold text-lg transition-all transform hover:scale-105 disabled:transform-none shadow-xl flex items-center justify-center gap-2"
+                    className="w-full bg-gradient-to-r from-pink-200 to-purple-200 hover:from-pink-300 hover:to-purple-300 disabled:from-gray-200 disabled:to-gray-300 disabled:cursor-not-allowed text-white px-8 py-5 rounded-2xl font-bold text-lg transition-all transform hover:scale-105 disabled:transform-none shadow-xl flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -719,18 +720,18 @@ function App() {
                   transition={{ duration: 0.4, type: "spring" }}
                   className="text-center py-12"
                 >
-                  <div className="bg-gradient-to-br from-green-400 to-green-500 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
-                    <CheckCircle className="w-12 h-12 text-white" />
+                  <div className="bg-gradient-to-br from-green-200/30 to-green-300/30 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
+                    <CheckCircle className="w-12 h-12 text-green-300" />
                   </div>
-                  <h3 className="text-4xl font-display font-bold text-gray-800 mb-4">
+                  <h3 className="text-4xl font-display font-bold text-gray-700 mb-4">
                     {t.contact.successTitle}
                   </h3>
-                  <p className="text-gray-600 mb-8 max-w-md mx-auto text-lg leading-relaxed">
+                  <p className="text-gray-500 mb-8 max-w-md mx-auto text-lg leading-relaxed">
                     {t.contact.successDesc}
                   </p>
                   <button
                     onClick={resetForm}
-                    className="text-pink-500 hover:text-pink-600 font-semibold text-lg transition-colors"
+                    className="text-pink-300 hover:text-pink-400 font-semibold text-lg transition-colors"
                   >
                     {t.contact.sendAnother}
                   </button>
@@ -739,16 +740,16 @@ function App() {
             </AnimatePresence>
           </div>
 
-          <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-8 text-gray-600">
+          <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-8 text-gray-500">
             <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-br from-pink-400 to-pink-500 p-3 rounded-full">
-                <Phone className="w-5 h-5 text-white" />
+              <div className="bg-gradient-to-br from-pink-200/30 to-purple-200/30 p-3 rounded-full">
+                <Phone className="w-5 h-5 text-pink-300" />
               </div>
               <span className="font-semibold text-lg">+380 XX XXX XXXX</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-br from-blue-400 to-blue-500 p-3 rounded-full">
-                <Mail className="w-5 h-5 text-white" />
+              <div className="bg-gradient-to-br from-blue-200/30 to-purple-200/30 p-3 rounded-full">
+                <Mail className="w-5 h-5 text-blue-300" />
               </div>
               <span className="font-semibold text-lg">info@fairytaledresses.com</span>
             </div>
@@ -757,18 +758,18 @@ function App() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-gradient-to-b from-gray-50 to-white border-t-2 border-powder/30 py-12 px-6">
+      <footer className="bg-white/60 backdrop-blur-sm border-t-2 border-powder/20 py-12 px-6">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center space-x-3">
-              <div className="bg-gradient-to-br from-powder to-skyblue p-2 rounded-full">
-                <Star className="w-6 h-6 text-white" />
+              <div className="bg-gradient-to-br from-powder/40 to-lavender/40 p-2.5 rounded-full">
+                <Star className="w-6 h-6 text-pink-300" />
               </div>
-              <span className="text-2xl font-display font-bold bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+              <span className="text-2xl font-display font-bold bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
                 Fairytale Dresses
               </span>
             </div>
-            <div className="text-gray-500 text-sm text-center">
+            <div className="text-gray-400 text-sm text-center">
               © 2024 Fairytale Dresses. {t.footer.rights}
             </div>
           </div>
