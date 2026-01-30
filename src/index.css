@@ -4,6 +4,7 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  background: linear-gradient(to bottom, #FEFCFA, #FFF8F0, #F9E5F0);
 }
 
 h1, h2, h3, h4, h5, h6 {
